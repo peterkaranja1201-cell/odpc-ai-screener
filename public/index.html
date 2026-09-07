@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ODPC AI & Data Privacy Screener</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🇰🇪 ODPC AI & Data Privacy Screener</h1>
+    <p class="subtitle">
+      Describe how you plan to use an AI tool, and get an instant compliance score and feedback based on Kenya's Data Protection Act and ODPC guidelines.
+    </p>
+
+    <textarea id="userInput" placeholder="e.g., We want to use AI to scan customer emails and automatically flag complaints for our support team."></textarea>
+
+    <button id="analyseBtn">Analyse Compliance</button>
+
+    <div id="loading" style="display:none;">Analysing... please wait.</div>
+
+    <div id="result" class="result-card" style="display:none;">
+      <h2>Compliance Report</h2>
+      <pre id="reportText"></pre>
+    </div>
+
+    <div id="error" class="error" style="display:none;"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
