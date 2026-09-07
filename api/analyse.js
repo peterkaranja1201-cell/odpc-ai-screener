@@ -60,6 +60,6 @@ Recommended Actions:
     res.status(500).json({ error: error.message });
   } catch (error) {
     console.error('OpenAI error:', error);
-    res.status(500).json({ error: 'Failed to analyse. Please try again later.' });
+    res.status(500).json({ error: 'error.message' });
   }
 };
