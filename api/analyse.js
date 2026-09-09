@@ -1,13 +1,5 @@
-// This is a Vercel serverless function that calls OpenAI.
-const { OpenAI } = require('openai');
-
-// Initialize OpenAI with your API key from environment variable
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
+// Vercel serverless function using Google Gemini
 module.exports = async (req, res) => {
-  // Only allow POST requests
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method not allowed' });
     return;
@@ -45,21 +37,54 @@ Recommended Actions:
 ...
 `;
 
-  try {
-    const completion = await openai.chat.completions.create({
-      model: 'gpt-3.5-turbo',
-      messages: [
-        { role: 'system', content: 'You are a data protection compliance assistant.' },
-        { role: 'user', content: prompt },
-      ],
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) {
+    res.status(500).json({ error: 'Missing Gemini API key' });
+    return;
+  }
+
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+
+  const body = {
+    contents: [
+      {
+        parts: [
+          { text: prompt }
+        ]
+      }
+    ],
+    generationConfig: {
       temperature: 0.2,
-      max_tokens: 600,
+      maxOutputTokens: 600,
+    }
+  };
+
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
     });
 
-    const result = completion.choices[0].message.content;
-    res.status(500).json({ error: error.message });
+    const data = await response.json();
+
+    if (!response.ok) {
+      const errMsg = data.error?.message || 'Gemini API error';
+      res.status(response.status).json({ error: errMsg });
+      return;
+    }
+
+    const resultText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (!resultText) {
+      res.status(500).json({ error: 'No response from Gemini' });
+      return;
+    }
+
+    res.status(200).json({ result: resultText });
   } catch (error) {
-    console.error('OpenAI error:', error);
+    console.error('Gemini error:', error);
     res.status(500).json({ error: error.message });
   }
 };
