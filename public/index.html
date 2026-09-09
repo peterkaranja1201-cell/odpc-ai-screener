@@ -3,28 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ODPC AI & Data Privacy Screener</title>
+  <title>ComplyKE – AI & Data Privacy Screener</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h1>🇰🇪 ODPC AI & Data Privacy Screener</h1>
-    <p class="subtitle">
-      Describe how you plan to use an AI tool, and get an instant compliance score and feedback based on Kenya's Data Protection Act and ODPC guidelines.
-    </p>
+    <header>
+      <h1>🇰🇪 ComplyKE</h1>
+      <p class="subtitle">
+        Describe how you plan to use an AI tool, and get an instant compliance score and feedback based on Kenya's Data Protection Act and ODPC guidelines.
+      </p>
+    </header>
 
-    <textarea id="userInput" placeholder="e.g., We want to use AI to scan customer emails and automatically flag complaints for our support team."></textarea>
+    <main>
+      <textarea id="userInput" placeholder="e.g., We want to use AI to scan customer emails and automatically flag complaints for our support team."></textarea>
 
-    <button id="analyseBtn">Analyse Compliance</button>
+      <button id="analyseBtn">Analyse Compliance</button>
 
-    <div id="loading" style="display:none;">Analysing... please wait.</div>
+      <div id="loading" style="display:none;">Analysing... please wait.</div>
 
-    <div id="result" class="result-card" style="display:none;">
-      <h2>Compliance Report</h2>
-      <pre id="reportText"></pre>
-    </div>
+      <div id="result" class="result-card" style="display:none;">
+        <div class="result-header">
+          <h2>Compliance Report</h2>
+          <button id="copyBtn" class="copy-btn">Copy Report</button>
+        </div>
+        <div id="reportSections"></div>
+        <pre id="reportText" style="display:none;"></pre>
+      </div>
 
-    <div id="error" class="error" style="display:none;"></div>
+      <div id="error" class="error" style="display:none;"></div>
+    </main>
+
+    <footer>
+      <p class="disclaimer">
+        ⚠️ <strong>Disclaimer:</strong> This tool provides general guidance only and does not constitute legal advice. Always consult the ODPC or a qualified data protection officer for specific compliance requirements.
+      </p>
+      <p class="footer-brand">Built with 💚 for responsible AI in Kenya</p>
+    </footer>
   </div>
 
   <script src="script.js"></script>
