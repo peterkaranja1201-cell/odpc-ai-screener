@@ -17,8 +17,5 @@
   "bugs": {
     "url": "https://github.com/peterkaranja1201-cell/odpc-ai-screener/issues"
   },
-  "homepage": "https://github.com/peterkaranja1201-cell/odpc-ai-screener#readme",
-  "dependencies": {
-    "openai": "^7.10.0"
-  }
+  "homepage": "https://github.com/peterkaranja1201-cell/odpc-ai-screener#readme"
 }
