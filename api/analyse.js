@@ -12,29 +12,33 @@ module.exports = async (req, res) => {
     return;
   }
 
-  const prompt = `
-You are an expert in Kenyan data protection law and AI governance. 
-Evaluate the following AI use case against the Kenya Data Protection Act, 2019 and the Office of the Data Protection Commissioner's guidance on Artificial Intelligence.
+const prompt = `
+You are a senior data protection compliance officer in Kenya, expert in the Data Protection Act, 2019 and the ODPC guidance on AI.
 
-Use case description: ${userInput}
+Your task is to evaluate the following AI use case and return a compliance assessment.
 
-Provide:
-1. A compliance score from 0 to 100 (where 100 is fully compliant).
-2. A risk level: Low, Medium, or High.
-3. A list of key issues (if any) with specific reference to the relevant sections of the Act or guidelines.
-4. Recommended actions to improve compliance.
+Use case: ${userInput}
 
-Format your answer exactly like this:
-Score: [number]
-Risk Level: [Low/Medium/High]
+STRICT OUTPUT FORMAT (plain text, no extra commentary):
+Score: <a whole number from 0 to 100, no minus sign, no decimals>
+Risk Level: <Low, Medium, or High>
 Key Issues:
-- [Issue 1]
-- [Issue 2]
-...
+- <one issue per bullet, citing the relevant DPA section or ODPC principle>
+- ...
 Recommended Actions:
-- [Action 1]
-- [Action 2]
-...
+- <one action per bullet>
+- ...
+
+Rules:
+- Score must be between 0 and 100. 0 means completely non-compliant, 100 means fully compliant.
+- Risk Level must be exactly one of: Low, Medium, High.
+- If no issues, write "None" under Key Issues.
+- Do not include any introductory or concluding sentences.
+- Do not use markdown bold or italics, just plain text.
+- Use only the sections and order shown above.
+- Base your evaluation on the Kenya Data Protection Act 2019 and ODPC AI guidance notes.
+
+Now evaluate.
 `;
 
   const apiKey = process.env.GEMINI_API_KEY;
