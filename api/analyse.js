@@ -37,6 +37,10 @@ Rules:
 - Do not use markdown bold or italics, just plain text.
 - Use only the sections and order shown above.
 - Base your evaluation on the Kenya Data Protection Act 2019 and ODPC AI guidance notes.
+- You MUST include the "Recommended Actions" section. Even if no issues exist, provide at least one general best practice action.
+- You MUST include both sections: "Key Issues" and "Recommended Actions". Do not omit either.
+- If there are no issues, write "None" under Key Issues, but still provide Recommended Actions.
+- Ensure the report is complete and ends with the last Recommended Action.
 
 Now evaluate.
 `;
@@ -63,10 +67,10 @@ Now evaluate.
         ]
       }
     ],
-    generationConfig: {
-      temperature: 0.2,
-      maxOutputTokens: 1500,
-    }
+generationConfig: {
+  temperature: 0.2,
+  maxOutputTokens: 2000,
+}   
   };
 
   let lastError = null;
