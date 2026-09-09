@@ -57,10 +57,10 @@ Now evaluate.
         ]
       }
     ],
-    generationConfig: {
+     generationConfig: {
       temperature: 0.2,
-      maxOutputTokens: 600,
-    }
+      maxOutputTokens: 1500,
+    }   
   };
 
   try {
